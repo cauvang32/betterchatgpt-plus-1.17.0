@@ -26,14 +26,16 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/coder-vippro/betterchatgpt-plus-1.17.0/my-image:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          tags: "ghcr.io/coder-vippro/betterchatgpt-plus-1.17.0:latest"
 
   run_container:
     runs-on: self-hosted
     needs: build_and_push
     steps:
       - name: Pull image
-        run: docker pull ghcr.io/coder-vippro/betterchatgpt-plus-1.17.0/my-image:latest
+        run: docker pull ghcr.io/coder-vippro/betterchatgpt-plus-1.17.0:latest
 
       - name: Run container
-        run: docker run -d --name my_container ghcr.io/coder-vippro/betterchatgpt-plus-1.17.0/my-image:latest
+        run: docker run -d --name my_container ghcr.io/coder-vippro/betterchatgpt-plus-1.17.0:latest
