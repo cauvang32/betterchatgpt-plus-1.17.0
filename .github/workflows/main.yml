@@ -11,6 +11,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -18,19 +21,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Docker image
-        run: |
-          docker build -t ghcr.io/${{ github.repository }}/my-image:latest .
-
-      - name: Push Docker image
-        run: |
-          docker push ghcr.io/${{ github.repository }}/my-image:latest
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}/my-image:latest
 
   run_container:
     runs-on: self-hosted
     needs: build_and_push
     steps:
-      - name: Pull image and run container
-        run: |
-          docker pull ghcr.io/${{ github.repository }}/my-image:latest
-          docker run -d --name my_container ghcr.io/${{ github.repository }}/my-image:latest
+      - name: Pull image
+        run: docker pull ghcr.io/${{ github.repository }}/my-image:latest
+
+      - name: Run container
+        run: docker run -d --name my_container ghcr.io/${{ github.repository }}/my-image:latest
