@@ -2467,10 +2467,10 @@ katex@^0.15.0:
   dependencies:
     commander "^8.0.0"
 
-katex@^0.16.13:
-  version "0.16.13"
-  resolved "https://registry.yarnpkg.com/katex/-/katex-0.16.13.tgz#3d8fde0ab5007b51cf7894f218d51803b9b7dfe5"
-  integrity sha512-epFEaPsNUdHcJ5Ax1OHdPbiiIyCgqsbgGhPznDa78DJ+jdo9vCNSEf/aujFtCTo8s4xnpDgsNinZHu/qQH+xUw==
+katex@^0.16.14:
+  version "0.16.14"
+  resolved "https://registry.yarnpkg.com/katex/-/katex-0.16.14.tgz#888e230b82403425f3ddf1d26b34f7f894ce1a98"
+  integrity sha512-tnUUAL/S+f/w8KrRpCFcCW/msuIlBkOmVnTmvdEK6WCkx6uDPRj3d9SBAP+qB5x0MCeOyUbdbIMtT5cUJD8aRw==
   dependencies:
     commander "^8.3.0"
 
